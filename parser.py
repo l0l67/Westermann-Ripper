@@ -2,11 +2,10 @@ import json
 import urllib.request
 import re
 
-fileData = ""
 urls = []
 
 def parserJson():
-    global urls, fileData
+    global urls
     jsonData = json.load(open('files.har', 'r'))
     
     counter = 3
