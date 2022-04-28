@@ -1,8 +1,5 @@
-import json
-import urllib.request
-import re
-import base64
-import sys 
+import json, urllib.request, re, base64, sys, os
+from PIL import Image
 
 save_to_folder = 'images_decoded/'
 encodedBytes = []
@@ -54,6 +51,16 @@ def saveImages():
         with open(sFile_name, 'wb') as img:
             img.write(decoded[0])
 
+def imagesToPDF():
+    path = os.listdir(save_to_folder)
+    firstImage = Image.open(f'{save_to_folder}/01.png').convert('RGB')
+    imageList = []
+
+    for file in path:
+        if file != '01.png':
+            imageList.append(Image.open(f'{save_to_folder}/{file}').convert('RGB'))
+        
+    firstImage.save('Buch.pdf', save_all=True, append_images=imageList)  
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
@@ -62,5 +69,9 @@ if __name__ == '__main__':
         parserJson()
         decodeImages()
         saveImages()
+
+        if input('\nconvert images to PDF? (y/n): ').upper() == 'Y':
+            imagesToPDF()
+
     else:
-        print('please specify a file name... (parserV2.py filename.extension)')
+        print('please specify a file name... (westermann-ripper.py filename.har)')
