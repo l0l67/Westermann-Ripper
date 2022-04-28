@@ -1,3 +1,4 @@
 images_decoded/*
+!images_decoded/.gitkeep
 *.pdf
 cache.har
