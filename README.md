@@ -1,4 +1,9 @@
 # Westermann-Ripper
-#### Usage:
-1. capture all images in the Network tab of your Browser and save the cache as a `.har` File
-2. execute `westermann-ripper.py filename.har`
+### Usage:
+capture all images in the Network tab of your Browser and save the cache to a file
+
+#### To decode the images in the cache file:
+`python3 westermann-ripper.py filename`
+
+#### To redownload the images:
+`python3 westermann-ripper.py --download filename`
